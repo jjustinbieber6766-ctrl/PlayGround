@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#101611" />
+  <title>MANU — Dice & Undead</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="game-frame" aria-label="Manu Dice and Undead game">
+      <div class="noise"></div>
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="Manu home"><span class="brand-mark">M</span><span>MANU<span class="brand-dot">.</span></span></a>
+        <div class="top-status"><span class="status-pill"><i></i> SURVIVOR ONLINE</span><span class="tiny-divider"></span><span class="season">SEASON 01 <b>·</b> THE OUTSKIRTS</span></div>
+        <button class="icon-button profile-button" data-open="settings" aria-label="Open settings"><span class="profile-avatar">M</span><span class="profile-name">MANU</span><span class="chevron">⌄</span></button>
+      </header>
+
+      <section id="homeScreen" class="screen home-screen active">
+        <div class="home-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> THE DICE ARE LOADED</div>
+          <h1>ROLL THE DICE.<br><span>OUTLIVE THE</span><br>UNDEAD.</h1>
+          <p class="hero-desc">One tiny survivor. A very big horde.<br>How far can your luck take you?</p>
+          <div class="home-actions"><button class="primary-button" id="playButton"><span>PLAY NOW</span><span class="button-arrow">↗</span></button><button class="text-button" data-open="settings"><span class="gear">⚙</span> SETTINGS</button></div>
+          <div class="home-footnote"><span class="keycap">A</span><span class="keycap">D</span> MOVE <span class="footnote-sep">/</span><span class="keycap">SPACE</span> SHOOT <span class="footnote-sep">/</span> OR TAP THE SCREEN</div>
+        </div>
+        <div class="hero-art" aria-label="A survivor facing a horde of zombies">
+          <div class="sun-halo"></div><div class="art-tag art-tag-top"><span>FIELD NOTES</span><b>NO. 001</b></div>
+          <div class="hero-grid"></div><div class="mountain mountain-back"></div><div class="mountain mountain-front"></div>
+          <div class="hero-ground"></div><div class="hero-crate crate-one"></div><div class="hero-crate crate-two"></div>
+          <div class="hero-zombie zombie-one"><i></i></div><div class="hero-zombie zombie-two"><i></i></div><div class="hero-zombie zombie-three"><i></i></div>
+          <div class="hero-man"><div class="man-shadow"></div><div class="man-leg leg-back"></div><div class="man-leg leg-front"></div><div class="man-body"><div class="man-strap"></div></div><div class="man-neck"></div><div class="man-head"><span class="man-hair"></span><span class="man-eye"></span></div><div class="man-arm arm-back"></div><div class="man-arm arm-front"></div><div class="man-gun"><i></i></div><div class="man-pack"></div></div>
+          <div class="art-tag art-tag-bottom"><span>LAST KNOWN LOCATION</span><b>SECTOR 07 — KEEP MOVING</b></div>
+          <div class="art-crosshair">+</div>
+        </div>
+        <div class="home-bottom"><div class="run-stats"><span><b>01</b> SURVIVOR</span><span><b>∞</b> UNDEAD</span><span><b>YOUR</b> STORY</span></div><button class="quit-link" id="quitButton">QUIT <span>↗</span></button></div>
+        <div class="update-chip"><span class="update-pulse"></span> UPDATE 01.04 <b>·</b> PATCH NOTES <button id="openUpdates">VIEW ↗</button></div>
+      </section>
+
+      <section id="gameScreen" class="screen game-screen" aria-label="Game in progress">
+        <div class="game-top-controls"><button class="square-control" data-open="settings" aria-label="Settings">⚙</button><div class="game-brand"><span class="live-dot"></span> LIVE RUN <span class="run-divider">/</span> <b id="playerNameLabel">MANU</b></div><button class="shop-button" id="shopButton"><span class="shop-bag">▣</span> SHOP <span class="shop-count" id="coinBadge">0</span></button></div>
+        <div class="hud-row"><div class="hud-card level-card"><span class="hud-label">CURRENT RUN</span><div class="level-main"><span class="level-number" id="levelNumber">01</span><span class="level-meta"><b id="difficultyLabel">EASY</b><span>LEVEL</span></span></div><div class="level-progress"><i id="levelProgress"></i></div><div class="progress-caption"><span id="killsCount">0 / 4 KILLS</span><span id="waveCaption">WAVE 01</span></div></div><div class="hud-card survivor-card"><div class="survivor-heading"><span class="hud-label">SURVIVOR</span><span class="survivor-name" id="survivorName">MANU</span></div><div class="health-track"><i id="healthBar"></i></div><div class="health-caption"><span>♥ <b id="healthText">100</b> HP</span><span class="coin-caption">● <b id="coinsText">250</b></span></div></div></div>
+        <div class="scene-wrap"><canvas id="gameCanvas" aria-label="Side-scrolling zombie battle"></canvas><div class="scene-topline"><span><i class="rec-dot"></i> SECTOR 07</span><span id="sceneStatus">INCOMING...</span></div><div class="scene-hint" id="sceneHint">TAKE THEM OUT BEFORE THEY REACH YOU</div><div class="damage-flash" id="damageFlash"></div></div>
+        <div class="loadout-row"><div class="weapon-card"><div class="weapon-icon" id="weaponIcon">✦</div><div class="weapon-info"><span class="hud-label">CURRENT LOADOUT</span><b id="weaponName">OLD RELIABLE</b><span class="weapon-rarity" id="weaponRarity">COMMON <i></i> 1 / 2</span></div><div class="weapon-damage"><span>DMG</span><b id="weaponDamage">18</b></div></div><div class="luck-card"><span class="luck-die">⚄</span><div><span class="hud-label">DICE LUCK</span><b><span id="luckCount">1</span> <small>ROLLS</small></b></div></div><button class="roll-button" id="rollButton"><span class="dice-face">⚄</span><span>ROLL WEAPON</span><small>1 LUCK</small></button></div>
+        <div class="game-bottom"><div class="difficulty-pick"><span class="bottom-label">CHOOSE YOUR RUN</span><div class="difficulty-options"><button class="difficulty-option selected" data-difficulty="easy"><span>01</span>EASY</button><button class="difficulty-option" data-difficulty="medium"><span>02</span>MEDIUM</button><button class="difficulty-option" data-difficulty="hard"><span>03</span>HARD</button></div></div><div class="run-tip"><span class="tip-icon">✳</span><span><b id="tipTitle">TIP: STAY SHARP</b><small id="tipText">Every 10 levels brings a boss. Save your best roll.</small></span></div><button class="exit-game" id="exitGame">EXIT RUN <span>↗</span></button></div>
+        <div class="mobile-controls"><button id="moveLeft" aria-label="Move left">←</button><button id="fireButton" aria-label="Shoot">FIRE</button><button id="moveRight" aria-label="Move right">→</button></div>
+      </section>
+
+      <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose" aria-label="Close dialog">×</button><div class="modal-eyebrow" id="modalEyebrow">SURVIVOR'S LOG</div><h2 id="modalTitle">SETTINGS</h2><div id="modalBody"></div></section></div>
+    </section>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
